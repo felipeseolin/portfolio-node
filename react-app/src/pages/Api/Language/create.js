@@ -1,27 +1,63 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Section from "../../../components/Section";
-import Button from "../../../components/Button";
-import Textarea from "../../../components/Textarea";
-import { baseUrl } from "../../../services/api";
+import api, {baseUrl} from "../../../services/api";
 import Input from "../../../components/Input";
 
-const LanguageCreate = () => (
-    <>
-        <Section classes="section">
-            <h1>Novo Idioma</h1>
+class LanguageEdit extends Component {
 
-            <form action={baseUrl + '/language'} method="post">
-                <Input inputId="name" classes="input" type="text" required="required">
-                    Idioma
-                </Input>
-                <Input inputId="level" classes="input" type="text" required="required">
-                    Nível de fluencia
-                </Input>
+    state = {
+        "id": null,
+        "language": '',
+    };
 
-                <Button id="submit" classes="btn" type="submit">Salvar</Button>
-            </form>
-        </Section>
-    </>
-);
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        if (id !== 'new') {
+            this.setState({id: id});
+            this.loadLanguage();
+        }
+    }
 
-export default LanguageCreate;
+    loadLanguage = async () => {
+        const response = await api.get(`/language/${this.props.match.params.id}`);
+        this.setState({language: response.data});
+    };
+
+    update = async () => {
+        const formData = new FormData(document.querySelector('form'));
+        const response = await api.put(`/language/${this.props.match.params.id}`, formData);
+    };
+
+    render() {
+
+        const {language, id} = this.state;
+
+        return (
+            <>
+                <Section classes="section">
+                    <h1>Novo Idioma</h1>
+
+                    <form action={baseUrl + '/language'} method="post">
+
+                        <Input inputId="name" classes="input" type="text" required="required"
+                            value={language ? language.name : ''}>
+                            Idiomas
+                        </Input>
+                        <Input inputId="level" classes="input" type="text" required="required"
+                            value={language ? language.level : ''}>
+                            Nível de fluência
+                        </Input>
+
+                        <button id="submit" className="btn" type={id ? 'button' : 'submit'}
+                                onClick={id ? this.update : ''}
+                        >
+                            Salvar
+                        </button>
+                    </form>
+                </Section>
+            </>
+        );
+    }
+}
+
+export default LanguageEdit;

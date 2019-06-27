@@ -56,27 +56,34 @@ class Router extends Component {
                 {/* Biography pages */}
                 <Route exact path="/api/biography" component={Biography}/>
                 <Route exact path="/api/biography/create" component={BiographyCreate}/>
+                <Route exact path="/api/biography/:id" component={BiographyCreate}/>
                 {/* CV */}
                 <Route exact path="/api/cv/" component={CV}/>
                 <Route exact path="/api/cv/create" component={CVCreate}/>
                 {/* DevelopedActivity */}
                 <Route exact path="/api/developedActivity" component={DevelopedActivity}/>
                 <Route exact path="/api/developedActivity/create" component={DevelopedActivityCreate}/>
+                <Route exact path="/api/developedActivity/:id" component={DevelopedActivityCreate}/>
                 {/* Formation */}
                 <Route exact path="/api/formation" component={Formation}/>
                 <Route exact path="/api/formation/create" component={FormationCreate}/>
+                <Route exact path="/api/formation/:id" component={FormationCreate}/>
                 {/* Interest */}
                 <Route exact path="/api/interest" component={Interest}/>
                 <Route exact path="/api/interest/create" component={InterestCreate}/>
+                <Route exact path="/api/interest/:id" component={InterestCreate}/>
                 {/* Language */}
                 <Route exact path="/api/language" component={Language}/>
                 <Route exact path="/api/language/create" component={LanguageCreate}/>
+                <Route exact path="/api/language/:id" component={LanguageCreate}/>
                 {/* MiniBiography */}
                 <Route exact path="/api/minibiography" component={MiniBiography}/>
                 <Route exact path="/api/minibiography/create" component={MiniBiographyCreate}/>
+                <Route exact path="/api/minibiography/:id" component={MiniBiographyCreate}/>
                 {/* MoreInfo */}
                 <Route exact path="/api/moreinfo" component={MoreInfo}/>
                 <Route exact path="/api/moreinfo/create" component={MoreInfoCreate}/>
+                <Route exact path="/api/moreinfo/:id" component={MoreInfoCreate}/>
                 {/* ProfilePicture */}
                 <Route exact path="/api/profilepicture" component={ProfilePicture}/>
                 <Route exact path="/api/profilepicture/create" component={ProfilePictureCreate}/>

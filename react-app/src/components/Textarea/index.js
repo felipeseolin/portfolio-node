@@ -3,6 +3,10 @@ import './styles.scss';
 
 class Textarea extends Component {
 
+    state = {
+        "value": this.props.value
+    };
+
     componentDidMount() {
         const $textarea = document.querySelector(`#${this.props.id}`);
         if (this.props.required) {
@@ -21,7 +25,9 @@ class Textarea extends Component {
                           className={this.props.classes}
                           placeholder={this.props.placeholder}
                           rows={this.props.rows}
-                >{ this.props.value }</textarea>
+                          onChange={e => {this.setState({value: e.target.value})}}
+                          value={this.state.value ? this.state.value : this.props.value}
+                > </textarea>
             </>
         );
     }

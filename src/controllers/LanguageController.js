@@ -15,6 +15,7 @@ class LanguageController {
         return res.json(language);
     }
     async update(req, res) {
+        console.log(req.body);
         const language = await Language.findByIdAndUpdate(req.params.id, req.body, {
             new: true
         });
