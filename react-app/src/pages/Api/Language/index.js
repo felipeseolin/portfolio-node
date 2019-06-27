@@ -32,6 +32,7 @@ class Language extends Component {
                             <ListData title={language.name}
                                       editdel={`#/api/language/${language._id}`}
                                       key={language._id}
+                                      del={`language/${language._id}`}
                             >
                                 <p>
                                     {language.level}
