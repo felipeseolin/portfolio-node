@@ -9,6 +9,10 @@ const SocialLinkSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    iconPath: {
+        type: String,
+        required: false
+    },
 
 }, {
     timestamps: {

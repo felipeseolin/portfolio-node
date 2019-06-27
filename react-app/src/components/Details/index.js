@@ -1,88 +1,121 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './styles.scss';
 import Section from "../Section";
 import SubSection from "../SubSection";
 import List from "../List";
+import api from "../../services/api";
 
-const Details = () => (
-    <>
-        <Section
-            idSec="details"
-            classes="section"
-            title="Detalhes"
-            description="Aqui estão algumas informações a respeito de meus interesses, idiomas, formação e atividades
+class Details extends Component {
+
+    state = {
+        "developedactivities": [],
+        "formations": [],
+        "interests": [],
+        "languages": [],
+    };
+
+    componentDidMount() {
+        this.loadDevelopedActivities();
+        this.loadFormations();
+        this.loadInterests();
+        this.loadLanguages();
+    }
+
+    loadDevelopedActivities = async () => {
+        const response = await api.get( '/developedactivity');
+        this.setState({developedactivities: response.data});
+    };
+
+    loadFormations = async () => {
+        const response = await api.get( '/formation');
+        this.setState({formations: response.data});
+    };
+
+    loadInterests = async () => {
+        const response = await api.get( '/interest');
+        this.setState({interests: response.data});
+    };
+
+    loadLanguages = async () => {
+        const response = await api.get( '/language');
+        this.setState({languages: response.data});
+    };
+
+    render() {
+
+        const {developedactivities, formations, interests, languages} = this.state;
+
+        return (
+            <>
+                <Section
+                    idSec="details"
+                    classes="section"
+                    title="Detalhes"
+                    description="Aqui estão algumas informações a respeito de meus interesses, idiomas, formação e atividades
                 desenvolvidas."
-        >
-            <SubSection
-                idSubSec="interests"
-                title="Interesses"
-                description="Estes são alguns dos interesses que eu possuo atualmente:"
-            >
-                <List classes="list flex center-all">
-                    <li>Desenvolvimento Web</li>
-                    <li>Web Design</li>
-                    <li>Design Gráfico</li>
-                    <li>Processamento Digital de Imagens</li>
-                    <li>Inteligência Artificial</li>
-                    <li title="User Experience">UX</li>
-                </List>
-            </SubSection>
+                >
+                    <SubSection
+                        idSubSec="interests"
+                        title="Interesses"
+                        description="Estes são alguns dos interesses que eu possuo atualmente:"
+                    >
+                        <List classes="list flex center-all">
+                            {interests.map(interest => (
+                                <li key={interest._id} title={interest.description}>
+                                    {interest.name}
+                                </li>
+                            ))}
+                        </List>
+                    </SubSection>
 
-            <SubSection
-                idSubSec="languages"
-                title="Línguas Estrangeiras"
-            >
+                    <SubSection
+                        idSubSec="languages"
+                        title="Idiomas"
+                        description="Estes são os idiomas que possuo conhecimento atualmente:"
+                    >
+                        <List classes="list flex center-all">
+                            {languages.map(language => (
+                                <li key={language._id}>
+                                    {language.name} - {language.level}
+                                </li>
+                            ))}
+                        </List>
 
-                <p>
-                    Eu sempre me interessei muito em aprender outros idiomas e desejo aprender muitos outros!
-                    Atualmente além do <span className="bold underline font-fruit-salad">português</span> que tenho como língua nativa,
-                    possuo o <span className="bold underline font-fruit-salad">español</span> em nível intermediário e o <span
-                    className="bold underline font-fruit-salad">english</span> em nível avançado, sendo que para este último possuo mais de
-                    sete anos de curso no CCAA finalizando no nível master.
-                </p>
-                <p>Como já disse gostaria de aprender novos idiomas entre eles estão:</p>
-                <List classes="flex list">
-                    <li>Italiano</li>
-                    <li>Francês</li>
-                    <li>Alemão</li>
-                </List>
+                    </SubSection>
 
-            </SubSection>
+                    <SubSection
+                        idSubSec="formation"
+                        title="Formação"
+                    >
+                        {formations.map(formation => (
+                            <div key={formation._id}>
+                                <h4>{formation.institution}</h4>
+                                <p>{formation.initialDate} - {formation.finalDate}</p>
+                                <p>{formation.description}</p>
+                            </div>
+                        ))}
+                    </SubSection>
 
-            <SubSection
-                idSubSec="formation"
-                title="Formação"
-            >
-                <h4>
-                    UTFPR - Universidade Tecnológica Federal do Paraná
-                </h4>
-                <p>2017 - atualmente</p>
-                <p>
-                    Cursando bacharelado em Engenharia de Software, com previsão de término para 2020.
-                </p>
+                    <SubSection
+                        idSubSec="developed-activities"
+                        title="Atividades desenvolvidas"
+                    >
+                        <p>
+                            Aqui estão listadas algumas atividades que eu desenvolvo.
+                        </p>
+                        <List classes="flex list">
+                            {developedactivities.map(developedactivity => (
+                                <li key={developedactivity._id} title={developedactivity.description}>
+                                    {developedactivity.activity}
+                                </li>
+                            ))}
+                        </List>
+                    </SubSection>
 
-                <h4>Colégio Passo a Passo</h4>
-                <p>2014 - 2016</p>
-                <p>Ensino Médio completo. Além disso, neste colégio também finalizei o ensino fundamental.</p>
-            </SubSection>
-
-            <SubSection
-                idSubSec="developed-activities"
-                title="Atividades desenvolvidas"
-            >
-                <p>
-                    Aqui estão listadas algumas atividades que eu desenvolvo.
-                </p>
-                <List classes="flex list">
-                    <li>Desenvolvimento Web - Full Stack</li>
-                    <li>Design Gráfico</li>
-                    <li>Desenvolvimento Desktop</li>
-                    <li>Gerenciamento de Projeto</li>
-                </List>
-            </SubSection>
-
-        </Section>
-    </>
-);
+                </Section>
+            </>
+        );
+    }
+}
 
 export default Details;

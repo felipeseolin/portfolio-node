@@ -7,9 +7,18 @@ const ProjectSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        require: false
+        require: true,
+        default: Date.now
     },
     description: {
+        type: String,
+        require: true
+    },
+    link: {
+        type: String,
+        require: false
+    },
+    imgPath: {
         type: String,
         require: false
     },

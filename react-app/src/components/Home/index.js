@@ -2,16 +2,29 @@ import React, {Component} from 'react';
 import './styles.scss';
 import ScrollAnimation from 'react-animate-on-scroll';
 import Section from "../Section";
+import api from "../../services/api";
 
 class Home extends Component {
 
     state = {
-        img: {
+        "minibios": [],
+        "img": {
             backgroundImage: 'url("' + process.env.PUBLIC_URL + '/assets/imgs/me3.jpg")'
         }
     };
 
+    componentDidMount() {
+        this.loadMiniBiographies();
+    }
+
+    loadMiniBiographies = async () => {
+        const response = await api.get( '/minibiography');
+        this.setState({minibios: response.data});
+    };
+
     render() {
+
+        const { minibios } = this.state;
 
         return (
             <>
@@ -24,16 +37,18 @@ class Home extends Component {
                         <div>
                             <h1 className="font-blue-lagoon">Felipe Seolin Bento</h1>
 
-                            <p>
-                                Eu sou um aluno de Engenharia de Software na Universidade Tecnológica Federal do Paraná,
-                                câmpus Cornélio Procópio e este é o meu portfólio, fique a vontade de ver e conhecer um
-                                pouco mais sobre mim e sobre o meu trabalho. É importante ressaltar que esta página está
-                                sempre em construção!
-                            </p>
+                            {minibios.map(minibio => (
+                                <p key={minibio._id}>
+                                    {minibio.text}
+                                </p>
+                            ))}
 
                             <p>
                                 Caso desejar visualizar ou baixar meu currículo (CV) é só
-                                <a href={process.env.PUBLIC_URL + '/assets/pdf/CV.pdf'} target="_blank"> clicar aqui</a>.
+                                <a href={process.env.PUBLIC_URL + '/assets/pdf/CV.pdf'}
+                                   target="_blank" rel="noopener noreferrer">
+                                    clicar aqui
+                                </a>.
                             </p>
                         </div>
                     </Section>

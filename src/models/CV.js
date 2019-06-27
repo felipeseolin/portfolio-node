@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 
 const CVSchema = new mongoose.Schema({
-    text: {
+    path: {
         type: String,
         required: true
     },
+    text: {
+        type: String,
+        required: false
+    }
 
 }, {
     timestamps: {

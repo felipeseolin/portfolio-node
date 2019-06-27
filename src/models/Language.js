@@ -5,6 +5,10 @@ const LanguageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    level: {
+        type: String,
+        required: true
+    },
 
 }, {
     timestamps: {

@@ -5,6 +5,10 @@ const InterestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        require: false
+    },
 }, {
     timestamps: {
         createdAt: 'created_at'

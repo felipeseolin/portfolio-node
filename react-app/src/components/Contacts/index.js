@@ -1,56 +1,56 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './styles.scss';
 import Section from "../Section";
 import Form from "../Form";
+import api from "../../services/api";
 
-const Contacts = () => (
-    <>
-        <Section
-            idSec="contacts"
-            classes="section"
-            title="Fale comigo"
-            description="Sinta-se a vontade para puxar assunto comigo"
-        >
-            <div className="flex row">
-                <div id="social-media" className="flex flex-column">
-                    <h3 className="font-green-haze">Redes Sociais</h3>
+class Contacts extends Component {
 
-                    <div className="flex center-all">
-                        <a href="https://www.facebook.com/felipe.seolinbento" target="_blank" rel="noopener noreferrer">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/facebook.svg'} alt="Facebook"/>
-                        </a>
+    state = {
+      "links": [],
+    };
 
-                        <a href="https://www.instagram.com/felipesebe" target="_blank" rel="noopener noreferrer">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/instagram.svg'} alt="Instagram"/>
-                        </a>
+    componentDidMount() {
+        this.loadLinks();
+    }
 
-                        <a href="https://github.com/felipeseolin" target="_blank" rel="noopener noreferrer">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/github.svg'} alt="Github"/>
-                        </a>
+    loadLinks = async () => {
+        const response = await api.get( '/link');
+        this.setState({links: response.data});
+    };
 
-                        <a href="https://www.linkedin.com/in/felipe-seolin-bento-55a915152" target="_blank"
-                           rel="noopener noreferrer">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/linkedin.svg'} alt="LinkedIn"/>
-                        </a>
+    render() {
 
-                        <a href="mailto:bentof@alunos.utfpr.edu.br" title="Email Institucional">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/mail.svg'} alt="Email Institucional"/>
-                        </a>
+        const {links} = this.state;
 
-                        <a href="mailto:felipe.seolin@hotmail.com" title="Email Pessoal">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/outlook.svg'} alt="Email Pessoal"/>
-                        </a>
+        return (
+            <>
+                <Section
+                    idSec="contacts"
+                    classes="section"
+                    title="Fale comigo"
+                    description="Sinta-se a vontade para puxar assunto comigo"
+                >
+                    <div className="flex row">
+                        <div id="social-media" className="flex flex-column">
+                            <h3 className="font-green-haze">Redes Sociais</h3>
 
-                        <a href="tel:+5544998483634">
-                            <img src={process.env.PUBLIC_URL + '/assets/icons/whatsapp.svg'} alt="WhatsApp"/>
-                        </a>
+                            <div className="flex center-all">
+                                {links.map(link => (
+                                    <a key={link._id} href={link.url} target="_blank"
+                                       rel="noopener noreferrer">
+                                        <img src={link.iconPath} alt={link.name} title={link.name}/>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+                        <Form/>
                     </div>
-                </div>
-
-                <Form/>
-            </div>
-        </Section>
-    </>
-);
+                </Section>
+            </>
+        );
+    }
+}
 
 export default Contacts;

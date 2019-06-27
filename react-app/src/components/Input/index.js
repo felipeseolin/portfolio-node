@@ -4,7 +4,7 @@ import './styles.scss';
 class Input extends Component {
 
     componentDidMount() {
-        const $input = document.querySelector(`#${this.props.inputId}`);
+    const $input = document.querySelector(`#${this.props.inputId}`);
         if (this.props.required) {
             $input.setAttribute('required', 'required');
         }

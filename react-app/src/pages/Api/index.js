@@ -21,7 +21,7 @@ class Api extends Component {
                             </a>
                         </p>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/biography'}>
                                 Listar Todos
                             </a>
                         </p>
@@ -29,12 +29,12 @@ class Api extends Component {
 
                     <Section idSec={"cv"} title={"Currículo"}>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/cv/create'}>
                                 Criar Novo
                             </a>
                         </p>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/cv'}>
                                 Listar Todos
                             </a>
                         </p>
@@ -42,12 +42,12 @@ class Api extends Component {
 
                     <Section idSec={"atividades-desenvolvidas"} title={"Atividades Desenvolvidas"}>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/developedactivity/create'}>
                                 Criar Novo
                             </a>
                         </p>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/developedactivity'}>
                                 Listar Todos
                             </a>
                         </p>
@@ -55,12 +55,12 @@ class Api extends Component {
 
                     <Section idSec={"formacao"} title={"Formação"}>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/formation/create'}>
                                 Criar Novo
                             </a>
                         </p>
                         <p>
-                            <a href={process.env.PUBLIC_URL + ''}>
+                            <a href={process.env.PUBLIC_URL + '#/api/formation'}>
                                 Listar Todos
                             </a>
                         </p>

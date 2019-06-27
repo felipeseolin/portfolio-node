@@ -7,6 +7,7 @@ class BiographyController {
         return res.json(biographies);
     }
     async store(req, res) {
+        console.log(req.body);
         const biography = await Biography.create(req.body);
         return res.json(biography);
     }

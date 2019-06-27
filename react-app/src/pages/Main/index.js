@@ -4,7 +4,6 @@ import Nav from "../../components/Nav";
 
 import ChangeColor from "../../components/ChangeColor";
 import Works from "../../components/Works";
-import Form from "../../components/Form";
 import BlogPreview from "../../components/BlogPreview";
 import Home from "../../components/Home";
 import Details from "../../components/Details";

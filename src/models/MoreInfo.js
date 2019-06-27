@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 
 const MoreInfoSchema = new mongoose.Schema({
-    text: {
+    title: {
         type: String,
         required: true
     },
-
+    text: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: {
         createdAt: 'created_at'

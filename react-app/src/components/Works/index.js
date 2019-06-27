@@ -2,20 +2,32 @@ import React, {Component} from "react";
 import './styles.scss';
 import Section from "../Section";
 import SubSection from "../SubSection";
+import api from "../../services/api";
 
 class Works extends Component {
 
     state = {
-        imgSize: 21
+        "projects": [],
+    };
+
+    componentDidMount() {
+        this.loadProjects();
+    }
+
+    loadProjects = async () => {
+        const response = await api.get('/project');
+        this.setState({projects: response.data});
+    };
+
+    formatDate = (str) => {
+        const date = new Date(str);
+        return `${date.getDate()}/${date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()}/${date.getFullYear()}`;
     };
 
     render() {
-        let imgs = [];
 
-        for (let i = 1; i <= this.state.imgSize; i++) {
-            const src = `${process.env.PUBLIC_URL}/assets/imgs/design${i}.jpg`;
-            imgs.push(<img key={i} src={src} alt={i}/>);
-        }
+        const {projects} = this.state;
+
         return (
             <>
                 <Section
@@ -24,42 +36,16 @@ class Works extends Component {
                     title="Trabalhos Desenvolvidos"
                     description="Aqui estão alguns dos trabalhos que já desenvolvi e também os que estou desenvolvendo."
                 >
-                    <SubSection
-                        title="Websites"
-                    >
-                        <p>
-                            No meu estágio tive a oportunidade de trabalhar com alguns sistemas Web para a universidade
-                            e
-                            também
-                            já me aventurei fazendo alguns sites.
-                        </p>
-                        <div className="flex center flex-space-evenly works-imgs">
-                            <a href="https://apoio.cp.utfpr.edu.br/Intranet/" target="_blank" rel="noopener noreferrer">
-                                <img src={process.env.PUBLIC_URL + '/assets/imgs/apoio.png'} alt="Sistemas de Apoio ao Câmpus"/>
-                            </a>
-                            <a href="https://apoio.cp.utfpr.edu.br/apptv/" target="_blank" rel="noopener noreferrer">
-                                <img src={process.env.PUBLIC_URL + '/assets/imgs/tv.png'} alt="TV do Câmpus"/>
-                            </a>
-                            <a href="https://felipeseolin.github.io/abrindo-portas/" target="_blank"
-                               rel="noopener noreferrer">
-                                <img src={process.env.PUBLIC_URL + '/assets/imgs/abrindo-portas.png'} alt="Abrindo Portas"/>
-                            </a>
-                        </div>
-                    </SubSection>
-
-                    <SubSection
-                        title="Design Gráfico"
-                    >
-                        <p>
-                            Com Design Gráfico sempre realizei trabalhos sem intenções lucrativas. Já fiz trabalhos para
-                            projetos
-                            da universidade, igrejas e entre outros.
-                        </p>
-                        <div className="flex center flex-space-evenly works-imgs">
-                            {imgs}
-                        </div>
-                    </SubSection>
-
+                    {projects.map(project => (
+                        <a href={project.link} target="_blank" key={project._id}
+                           rel="noopener noreferrer"
+                        >
+                            <h3>{project.name}</h3>
+                            <p>{this.formatDate(project.date)}</p>
+                            <p>{project.description}</p>
+                            <img src={project.imgPath} alt={project.name} className="works-imgs"/>
+                        </a>
+                    ))}
                 </Section>
             </>
         )

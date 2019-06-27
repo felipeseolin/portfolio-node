@@ -1,0 +1,19 @@
+@import "../../styles/colors";
+@import "../../styles/functions";
+
+.list-data {
+  background-color: $green-haze;
+  color: $white;
+  margin: calcSize(1px);
+  padding: calcSize(1px);
+  border-radius: calcSize(4px);
+
+  a {
+    padding: calcSize(3px);
+    color: $white;
+
+    &:hover {
+      color: $light-gray;
+    }
+  }
+}
