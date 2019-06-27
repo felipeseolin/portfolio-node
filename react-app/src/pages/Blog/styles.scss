@@ -1,0 +1,13 @@
+@import "../../styles/functions";
+
+.blogImage {
+  width: 100%;
+  height: calcSize(26px);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+
+  @media screen and (max-width: 800px){
+    height: calcSize(40px);
+  }
+}

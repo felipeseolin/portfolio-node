@@ -1,0 +1,25 @@
+@import "../../styles/colors";
+@import "../../styles/functions";
+
+#contacts {
+
+  a {
+
+    img {
+      height: calcSize(4px);
+      margin: 0 calcSize(1px) 0 0;
+      -webkit-filter: opacity(.5) drop-shadow(0 0 0 $fruit-salad);
+      filter: opacity(.5) drop-shadow(0 0 0 $fruit-salad);
+
+
+      &:hover {
+        fill: $green-haze;
+        -webkit-filter: opacity(.5) drop-shadow(0 0 0 $greenery);
+        filter: opacity(.5) drop-shadow(0 0 0 $greenery);
+      }
+
+    }
+
+  }
+
+}

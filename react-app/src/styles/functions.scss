@@ -1,0 +1,3 @@
+@function calcSize($size) {
+  @return $size * 8;
+}

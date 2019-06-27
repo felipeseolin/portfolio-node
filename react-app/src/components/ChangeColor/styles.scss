@@ -1,0 +1,23 @@
+@import "../../styles/functions";
+@import "../../styles/colors";
+
+#color-mode {
+  position: fixed;
+  bottom: calcSize(1px);
+  right: calcSize(2px);
+
+  img {
+    height: calcSize(5px);
+    cursor: pointer;
+  }
+
+}
+
+.dark {
+  transition: all 0.3s;
+  color: $white !important;
+  background-color: $black !important;
+  text-shadow: none !important;
+  box-shadow: none;
+}
+

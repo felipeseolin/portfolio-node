@@ -1,0 +1,17 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.textarea {
+  width: 100%;
+  min-height: calcSize(2px);
+  border: 1px solid #ccc;
+  border-radius: calcSize(1px);
+  padding: calcSize(1px);
+  margin: calcSize(1px) 0;
+
+  &:hover, &:focus, &:checked {
+    border-color: $greenery;
+    border-radius: calcSize(1px);
+  }
+
+}

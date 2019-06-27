@@ -1,0 +1,12 @@
+@import "../../styles/colors";
+
+#more {
+  h2 {
+    color: $white !important;
+  }
+
+  h3 {
+    @extend h2;
+    text-decoration: underline;
+  }
+}

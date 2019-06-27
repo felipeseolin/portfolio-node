@@ -1,12 +1,12 @@
 const express = require("express");
 const routes = express.Router();
 
-const MiniB = require("./controllers/ProductController");
+const PortfolioController = require("./controllers/PortfolioController");
 
-routes.get("/products", ProductController.index);
-routes.post("/products", ProductController.store);
-routes.get("/products/:id", ProductController.show);
-routes.put("/products/:id", ProductController.update);
-routes.delete("/products/:id", ProductController.destroy);
+routes.get("/portfolio", PortfolioController.index);
+routes.post("/portfolio", PortfolioController.store);
+routes.get("/portfolio/:id", PortfolioController.show);
+routes.put("/portfolio/:id", PortfolioController.update);
+routes.delete("/portfolio/:id", PortfolioController.destroy);
 
 module.exports = routes;

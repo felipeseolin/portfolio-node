@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+@import "../../styles/functions";
+
+.list {
+  list-style: none;
+
+  li {
+    margin: calcSize(1px);
+    border-bottom: solid 1px $blue-lagoon;
+
+    &:hover {
+      color: $blue-lagoon;
+      border-color: $teal;
+    }
+  }
+
+}

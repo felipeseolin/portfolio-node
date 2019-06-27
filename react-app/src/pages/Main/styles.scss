@@ -1,0 +1,10 @@
+@import "../../styles/functions";
+@import "../../styles/colors";
+
+@media screen and (max-width: 768px) {
+
+  #blog div {
+    flex-direction: column;
+  }
+
+}

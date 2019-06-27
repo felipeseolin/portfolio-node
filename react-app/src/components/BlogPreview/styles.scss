@@ -1,0 +1,20 @@
+@import "../../styles/functions";
+@import "../../styles/colors";
+
+.blogPreview {
+
+  background-color: $teal;
+  color: $white;
+  width: 70vw;
+  padding: calcSize(3px);
+  margin-bottom: calcSize(2px);
+
+  &:hover {
+    background-color: $greenery;
+  }
+
+  & a:hover {
+    color: $white !important;
+  }
+
+}

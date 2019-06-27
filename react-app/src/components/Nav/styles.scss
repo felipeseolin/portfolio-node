@@ -1,0 +1,92 @@
+@import "../../styles/colors";
+@import "../../styles/functions";
+
+.topnav {
+  overflow: hidden;
+  background-color: $blue-lagoon;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+
+  ul {
+    list-style: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+
+      a {
+        float: left;
+        display: block;
+        color: $white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+
+        &:hover {
+          background-color: $teal;
+          color: white;
+        }
+
+      }
+
+    }
+
+  }
+
+  .icon {
+    display: none;
+  }
+
+}
+
+.active {
+  background-color: $black;
+  color: $white !important;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1110px) {
+  .topnav ul li:not(:first-child) {
+    display: none;
+  }
+
+  .topnav ul li:last-child {
+    float: right;
+    display: block;
+
+    a.icon {
+      float: right;
+      display: block;
+    }
+
+  }
+
+  .topnav.responsive {
+    display: block;
+
+    .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    ul, li, a {
+      float: none;
+      display: block !important;
+      text-align: left;
+    }
+  }
+}

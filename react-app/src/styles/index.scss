@@ -1,0 +1,101 @@
+@import "./fonts";
+@import "./colors";
+@import "./functions";
+
+* {
+  font-family: 'Montserrat', SansSerif;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  line-height: 1.4rem;
+  text-indent: 2rem;
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+  color: $blue-lagoon;
+
+  &:hover {
+    @extend a;
+    color: $observatory;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  section {
+    padding: calcSize(12px) 3vw;
+  }
+
+  #about-me {
+    flex-direction: column;
+  }
+
+}
+
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: .9em;
+  text-indent: 0;
+  padding: 3px;
+  margin: 0;
+}
+
+// FLEX CLASS
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-start {
+  justify-content: start;
+}
+
+.center {
+  justify-content: center;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.center-all {
+  @extend .center;
+  align-content: center;
+  align-items: center;
+}
+
+.flex-space-evenly {
+  justify-content: space-evenly;
+}

@@ -1,0 +1,15 @@
+@import "../../styles/functions";
+
+.section {
+  padding: calcSize(12px) 20vw;
+
+  .title {
+    padding-top: calcSize(2px);
+    margin-bottom: 0;
+  }
+
+  & > div {
+    margin-top: calcSize(4px);
+  }
+
+}
