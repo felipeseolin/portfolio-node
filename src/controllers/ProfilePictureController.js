@@ -7,7 +7,22 @@ class ProfilePictureController {
         return res.json(profilePictures);
     }
     async store(req, res) {
-        const profilePicture = await ProfilePicture.create(req.body);
+        if (Object.keys(req.files).length == 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
+
+        const path = req.files.path;
+        const fullpath = `uploads/${path.name}`;
+        path.mv(fullpath, function (err) {
+            if (err)
+                return res.status(500).send(err);
+        });
+        const body = {
+            "path": fullpath,
+            "name": req.body.name,
+            "description": req.body.description
+        };
+        const profilePicture = await ProfilePicture.create(body);
         return res.json(profilePicture);
     }
     async show(req, res) {

@@ -7,7 +7,23 @@ class SocialLinkController {
         return res.json(socialLinks);
     }
     async store(req, res) {
-        const socialLink = await SocialLink.create(req.body);
+        if (Object.keys(req.files).length == 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
+
+        const iconPath = req.files.iconPath;
+        const fullpath = `uploads/${iconPath.name}`;
+        iconPath.mv(fullpath, function (err) {
+            if (err)
+                return res.status(500).send(err);
+        });
+        const body = {
+            "iconPath": fullpath,
+            "url": req.body.url,
+            "name": req.body.name
+        };
+        
+        const socialLink = await SocialLink.create(body);
         return res.json(socialLink);
     }
     async show(req, res) {

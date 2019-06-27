@@ -7,7 +7,25 @@ class ProjectController {
         return res.json(projects);
     }
     async store(req, res) {
-        const project = await Project.create(req.body);
+        if (Object.keys(req.files).length == 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
+
+        const imgPath = req.files.imgPath;
+        const fullpath = `uploads/${imgPath.name}`;
+        imgPath.mv(fullpath, function (err) {
+            if (err)
+                return res.status(500).send(err);
+        });
+        const body = {
+            "imgPath": fullpath,
+            "link": req.body.link,
+            "description": req.body.link,
+            "date": req.body.date,
+            "name": req.body.name
+        };
+
+        const project = await Project.create(body);
         return res.json(project);
     }
     async show(req, res) {

@@ -10,7 +10,7 @@ const InterestCreate = () => (
         <Section classes="section">
             <h1>Nova Imagem de Perfil</h1>
 
-            <form action={baseUrl + '/profilepicture'} method="post">
+            <form action={baseUrl + '/profilepicture'} method="post" encType="multipart/form-data">
                 <Input inputId="name" classes="input" type="text">
                     Nome
                 </Input>

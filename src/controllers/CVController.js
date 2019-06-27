@@ -7,7 +7,22 @@ class CVController {
         return res.json(cvs);
     }
     async store(req, res) {
-        const cv = await CV.create(req.body);
+        if (Object.keys(req.files).length == 0) {
+            return res.status(400).send('No files were uploaded.');
+        }
+
+        const path = req.files.path;
+        const fullpath = `uploads/${path.name}`;
+        path.mv(fullpath, function (err) {
+            if (err)
+                return res.status(500).send(err);
+        });
+
+        const body = {
+            "path": fullpath,
+            "text": req.body.text
+        };
+        const cv = await CV.create(body);
         return res.json(cv);
     }
     async show(req, res) {

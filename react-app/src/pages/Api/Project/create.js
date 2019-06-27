@@ -10,7 +10,7 @@ const ProjectCreate = () => (
         <Section classes="section">
             <h1>Novo projeto</h1>
 
-            <form action={baseUrl + '/project'} method="post">
+            <form action={baseUrl + '/project'} method="post" encType="multipart/form-data">
                 <Input inputId="name" classes="input" type="text" required="required">
                     Nome
                 </Input>

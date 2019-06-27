@@ -1,5 +1,6 @@
 const express = require("express");
 const routes = express.Router();
+const fileUpload = require('express-fileupload');
 
 const PortfolioController = require("./controllers/PortfolioController");
 const BiographyController = require("./controllers/BiographyController");
@@ -100,5 +101,7 @@ routes.post("/link", SocialLinkController.store);
 routes.get("/link/:id", SocialLinkController.show);
 routes.put("/link/:id", SocialLinkController.update);
 routes.delete("/link/:id", SocialLinkController.destroy);
+
+routes.get("/con")
 
 module.exports = routes;
