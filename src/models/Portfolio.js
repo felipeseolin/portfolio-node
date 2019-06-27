@@ -77,6 +77,11 @@ const PortfolioSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+
+}, {
+    timestamps: {
+        createdAt: 'created_at'
+    }
 });
 
 module.exports = mongoose.model("Portfolio", PortfolioSchema);
